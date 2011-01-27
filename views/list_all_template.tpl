@@ -1,6 +1,8 @@
 %include header_template title='All Bookmarks'
 %import re
 
+
+
 <div class="addstuff">
 <button>Add a new bookmark</button>
 <div style="display: none">
@@ -13,6 +15,9 @@
 </script>
 </div>
 
+
+
+
 <div class="tagsblock">
 Tags:
 %for tagrow in tagrows:
@@ -22,6 +27,8 @@ Tags:
 %end
 </div>
 
+
+
 <div class="tableblock">
 <table  cellpadding="0px" cellspacing="0px">
 %for row in rows:
@@ -29,9 +36,16 @@ Tags:
     %if re.search("^http", r):
       <tr>
       <td><a href="{{r}}">{{r}}</a> </td>
-    %else:
+      %#remove all protocol and leading colon slash slash
+      %p = re.compile('^.+://')
+      %noslash = p.sub( '', r)
+      %#change slashes to triple colon so the routing doesn't get confused
+      %p = re.compile('/')
+      %noslash = p.sub( ':::', noslash)
+      %cururl = noslash
+    %else: 
       <td>{{r}}</td>
-      <td>delete</td>
+      <td><a href="/delete/{{cururl}}">X</a></td>
       </tr>
     %end
   %end

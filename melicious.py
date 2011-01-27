@@ -1,5 +1,6 @@
 import sqlite3
 from bottle import route, run, SimpleTemplate, template, debug, request, static_file, error
+import re
 
 #
 # show all bookmarks
@@ -26,6 +27,8 @@ def listall():
 
 #
 # add a bookmark
+# TODO This is now handled with a jquery reveal. Remove this route if
+# it becomes an orphan.
 #
 @route('/add')
 def add(action="form"):
@@ -48,6 +51,23 @@ def new_item():
 	output = template('save_complete_template', dbsaid='The new bookmark was inserted into the database, the ID is %s' % new_id)
 	return output
 
+#
+# delete a bookmark
+#
+@route('/delete/:url', method='GET')
+def del_row(url):
+	#return "i will delete %s " % url #debug
+        #change triple colon back to slash 
+        p = re.compile(':::')
+        slash = p.sub( '/', url)
+	conn = sqlite3.connect('melicious.db')
+	c = conn.cursor()
+	query = "DELETE FROM bookmarks WHERE bookmark like '%%%s';" % slash.strip()
+	c.execute(query)
+	conn.commit()
+	c.close()
+	return '<p>Bookmark for %(url)s deleted! <a href="/">continue</a></p>' % {"url": slash}
+	#return '<p>Bookmark for %(url)s deleted! %(query)s <a href="/">continue</a></p>' % {"url": slash, "query": query} #debug
 
 #
 # 404

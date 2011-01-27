@@ -1,4 +1,3 @@
-enable delete
 sanitize input
 show/hide add url
 do something friendlier when save complete
@@ -7,3 +6,5 @@ support multiple tags per bookmark (right now just smooshing into one)
 make sure create initial table works properly
 templatize headers and footers
 make it look nice
+
+x enable delete
