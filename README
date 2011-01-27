@@ -9,7 +9,8 @@ How do I start?
 0. cd to the melicious directory
 1. Run $ python createdb.py
 2. Run $ nohup python ./melicious.py &
-3. Add and enjoy bookmarks
+3. Aim your browser at http://localhost:8080/
+4. Add and enjoy bookmarks
 
 How do I stop?
 ==========================================
