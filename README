@@ -1,0 +1,27 @@
+
+What is this?
+==========================================
+Sorta like Delicious, but just for you. Melicious lets you save and
+manage your bookmarks.
+
+How do I start?
+==========================================
+0. cd to the melicious directory
+1. Run $ python createdb.py
+2. Run $ nohup python ./melicious.py &
+3. Add and enjoy bookmarks
+
+How do I stop?
+==========================================
+0. Kill the pid of the process running melicious.
+
+What's under the hood?
+==========================================
+Bottle - http://bottle.paws.de/
+SQLite3 - http://www.sqlite.org/
+
+I have suggestions
+==========================================
+Contact brian@briantanaka.com
+
+###
